@@ -1,0 +1,19 @@
+.container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  max-width: 248px;
+  background-color: rgb(37, 8, 198);
+  flex-grow: 1;
+  padding: 2rem 0;
+}
+
+.links {
+  padding: 0.5rem 2rem;
+}
+
+.links.active {
+  background-color: white;
+  color: rgb(37, 8, 198);
+  font-weight: 900;
+}
