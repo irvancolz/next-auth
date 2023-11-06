@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/sidebar/sidebar";
 import style from "./page.module.css";
+import AuthProvider from "@/context/auth";
+import CallbackUrl from "@/context/login";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,25 +20,29 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div
-          style={{
-            display: "flex",
-            minHeight: "100vh",
-          }}
-        >
-          <Sidebar />
-          <main
+      <CallbackUrl>
+        <body className={inter.className}>
+          <div
             style={{
-              flexGrow: 1,
-              position: "relative",
+              display: "flex",
+              minHeight: "100vh",
             }}
-            className={style.main}
           >
-            {children}
-          </main>
-        </div>
-      </body>
+            <Sidebar />
+            <AuthProvider>
+              <main
+                style={{
+                  flexGrow: 1,
+                  position: "relative",
+                }}
+                className={style.main}
+              >
+                {children}
+              </main>
+            </AuthProvider>
+          </div>
+        </body>
+      </CallbackUrl>
     </html>
   );
 }

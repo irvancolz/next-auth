@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
 import style from "./style.module.css";
+import { signOut } from "next-auth/react";
 
 export default function Logout() {
   function makeLogoutReq() {
-    console.log("logged out");
+    signOut({ callbackUrl: "/auth/login" });
   }
 
   return (

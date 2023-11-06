@@ -1,14 +1,29 @@
 "use client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import style from "./style.module.css";
+import { signIn } from "next-auth/react";
+import { CallbackUrlContext, callbackContext } from "@/context/login";
 
-export default function Login() {
+export default function Login({}) {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
+  const { callback } = useContext(CallbackUrlContext);
 
-  function makeLoginReq(e: FormEvent) {
+  async function makeLoginReq(e: FormEvent) {
     e.preventDefault();
-    console.log("need help");
+
+    const loginRes = await signIn("credentials", {
+      username: user,
+      password: pass,
+      redirect: false,
+    });
+    if (loginRes?.error) {
+      alert("failed to login :" + loginRes?.error);
+      return;
+    }
+    setUser(() => "");
+    setPass(() => "");
+    window.location.replace(callback);
   }
 
   return (

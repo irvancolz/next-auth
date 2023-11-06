@@ -1,5 +1,7 @@
-import styles from "./page.module.css";
-
-export default function Home() {
-  return <h1>home page</h1>;
+export default async function Home() {
+  return (
+    <>
+      <h1>home page</h1>
+    </>
+  );
 }
