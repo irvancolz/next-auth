@@ -46,7 +46,7 @@ export default function Login({}) {
             type="text"
             id="password-txt-field"
             placeholder="username"
-            value={pass}
+            value={user}
             onChange={(e) => setPass(() => e.target.value)}
           />
         </div>
